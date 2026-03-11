@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  displayName  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  outfits       Outfit[]
+  products      Product[]
+  accessories   Accessory[]
+  refreshTokens RefreshToken[]
+
+  @@map("users")
+}
+
+model Product {
+  id         String   @id @default(cuid())
+  title      String
+  price      Float
+  currency   String   @default("USD")
+  imageUrl   String
+  productUrl String
+  store      String   // StoreSlug: "zara" | "hm" | "asos" | "shein" | "nike"
+  layer      String   // LayerName: "tops" | "bottoms" | "outerwear" | "shoes" | "accessories" | "underwear"
+  createdAt  DateTime @default(now())
+
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  outfitItems OutfitItem[]
+
+  @@index([userId])
+  @@index([store])
+  @@map("products")
+}
+
+model Outfit {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  isPublic    Boolean  @default(false)
+  canvasState Json?    // CanvasLayerStack serialized as JSON
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId String
+  user   User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items  OutfitItem[]
+
+  @@index([userId])
+  @@map("outfits")
+}
+
+model OutfitItem {
+  id        String   @id @default(cuid())
+  positionX Float    @default(0)   // 0.0–1.0 relative canvas x
+  positionY Float    @default(0)   // 0.0–1.0 relative canvas y
+  scale     Float    @default(1.0)
+  zIndex    Int
+  addedAt   DateTime @default(now())
+
+  outfitId String
+  outfit   Outfit  @relation(fields: [outfitId], references: [id], onDelete: Cascade)
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@unique([outfitId, productId])
+  @@index([outfitId])
+  @@map("outfit_items")
+}
+
+model Accessory {
+  id         String   @id @default(cuid())
+  title      String
+  imageUrl   String
+  productUrl String
+  store      String
+  price      Float
+  currency   String   @default("USD")
+  category   String   // AccessoryCategory
+  createdAt  DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("accessories")
+}
+
+model RefreshToken {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+  revokedAt DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
