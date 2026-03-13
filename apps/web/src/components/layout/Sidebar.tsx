@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
+import { useUser, useClerk } from "@clerk/nextjs";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Outfits", icon: "👗" },
@@ -12,7 +12,8 @@ const NAV_ITEMS = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { user, logout } = useAuth();
+  const { user } = useUser();
+  const { signOut } = useClerk();
 
   return (
     <aside className="w-56 shrink-0 flex flex-col border-r border-gray-100 min-h-screen py-6 px-4">
@@ -34,9 +35,9 @@ export function Sidebar() {
       </nav>
 
       <div className="mt-auto border-t border-gray-100 pt-4">
-        <div className="text-xs text-gray-400 px-3 mb-2">{user?.email}</div>
+        <div className="text-xs text-gray-400 px-3 mb-2">{user?.primaryEmailAddress?.emailAddress}</div>
         <button
-          onClick={logout}
+          onClick={() => signOut({ redirectUrl: "/" })}
           className="w-full text-left px-3 py-2 text-sm text-gray-500 hover:text-black hover:bg-gray-50 rounded-lg transition"
         >
           Sign out

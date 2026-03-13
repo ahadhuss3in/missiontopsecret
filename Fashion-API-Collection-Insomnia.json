@@ -1,0 +1,813 @@
+{
+  "_type": "export",
+  "__exportFormat": 4,
+  "__exportDate": "2026-03-13T00:00:00.000Z",
+  "__exportSource": "insomnia.desktop.app:v2026.1.0",
+  "resources": [
+    {
+      "_id": "req_health",
+      "_type": "request",
+      "parentId": "fld_root",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/health",
+      "name": "Health Check",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -200000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "fld_auth",
+      "_type": "request_group",
+      "parentId": "fld_root",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "name": "Auth",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -100000
+    },
+    {
+      "_id": "req_register",
+      "_type": "request",
+      "parentId": "fld_auth",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/auth/register",
+      "name": "Register",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"SecurePassword123!\",\n  \"name\": \"John Doe\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -100000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_login",
+      "_type": "request",
+      "parentId": "fld_auth",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/auth/login",
+      "name": "Login",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"SecurePassword123!\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -95000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_me",
+      "_type": "request",
+      "parentId": "fld_auth",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/auth/me",
+      "name": "Get Current User",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -90000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_refresh",
+      "_type": "request",
+      "parentId": "fld_auth",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/auth/refresh",
+      "name": "Refresh Token",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"refreshToken\": \"{{ refresh_token }}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -85000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_logout",
+      "_type": "request",
+      "parentId": "fld_auth",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/auth/logout",
+      "name": "Logout",
+      "description": "",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -80000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "fld_products",
+      "_type": "request_group",
+      "parentId": "fld_root",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "name": "Products",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -75000
+    },
+    {
+      "_id": "req_get_products",
+      "_type": "request",
+      "parentId": "fld_products",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/products",
+      "name": "Get All Products",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "skip",
+          "value": "0"
+        },
+        {
+          "name": "take",
+          "value": "20"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -75000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_get_product_id",
+      "_type": "request",
+      "parentId": "fld_products",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/products/{{ product_id }}",
+      "name": "Get Product by ID",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -70000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_create_product",
+      "_type": "request",
+      "parentId": "fld_products",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/products",
+      "name": "Create Product",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Black Casual T-Shirt\",\n  \"description\": \"Comfortable black cotton t-shirt\",\n  \"price\": 49.99,\n  \"imageUrl\": \"https://example.com/tshirt.jpg\",\n  \"url\": \"https://store.com/tshirt\",\n  \"source\": \"asos\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -65000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_delete_product",
+      "_type": "request",
+      "parentId": "fld_products",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/products/{{ product_id }}",
+      "name": "Delete Product",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -60000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "fld_accessories",
+      "_type": "request_group",
+      "parentId": "fld_root",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "name": "Accessories",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -55000
+    },
+    {
+      "_id": "req_get_accessories",
+      "_type": "request",
+      "parentId": "fld_accessories",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/accessories",
+      "name": "Get All Accessories",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -55000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_get_accessory_id",
+      "_type": "request",
+      "parentId": "fld_accessories",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/accessories/{{ accessory_id }}",
+      "name": "Get Accessory by ID",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -50000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_create_accessory",
+      "_type": "request",
+      "parentId": "fld_accessories",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/accessories",
+      "name": "Create Accessory",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Silver Watch\",\n  \"type\": \"watch\",\n  \"imageUrl\": \"https://example.com/watch.jpg\",\n  \"price\": 299.99,\n  \"url\": \"https://store.com/watch\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -45000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_delete_accessory",
+      "_type": "request",
+      "parentId": "fld_accessories",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/accessories/{{ accessory_id }}",
+      "name": "Delete Accessory",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -40000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "fld_outfits",
+      "_type": "request_group",
+      "parentId": "fld_root",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "name": "Outfits",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -35000
+    },
+    {
+      "_id": "req_get_outfits",
+      "_type": "request",
+      "parentId": "fld_outfits",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/outfits",
+      "name": "Get All Outfits",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -35000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_get_outfit_id",
+      "_type": "request",
+      "parentId": "fld_outfits",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/outfits/{{ outfit_id }}",
+      "name": "Get Outfit by ID",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -30000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_create_outfit",
+      "_type": "request",
+      "parentId": "fld_outfits",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/outfits",
+      "name": "Create Outfit",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Summer Beach Vibes\",\n  \"description\": \"Light and breezy outfit for beach parties\",\n  \"occasion\": \"casual\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -25000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_update_outfit",
+      "_type": "request",
+      "parentId": "fld_outfits",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/outfits/{{ outfit_id }}",
+      "name": "Update Outfit",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Updated Outfit Name\",\n  \"description\": \"Updated description\",\n  \"occasion\": \"formal\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -20000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_delete_outfit",
+      "_type": "request",
+      "parentId": "fld_outfits",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/outfits/{{ outfit_id }}",
+      "name": "Delete Outfit",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -15000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "fld_outfit_items",
+      "_type": "request_group",
+      "parentId": "fld_outfits",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "name": "Outfit Items",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -10000
+    },
+    {
+      "_id": "req_add_outfit_item",
+      "_type": "request",
+      "parentId": "fld_outfit_items",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/outfits/{{ outfit_id }}/items",
+      "name": "Add Item to Outfit",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"productId\": \"{{ product_id }}\",\n  \"position\": {\n    \"x\": 100,\n    \"y\": 50\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -10000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_update_outfit_item",
+      "_type": "request",
+      "parentId": "fld_outfit_items",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/outfits/{{ outfit_id }}/items/{{ item_id }}",
+      "name": "Update Outfit Item",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"position\": {\n    \"x\": 150,\n    \"y\": 75\n  },\n  \"zIndex\": 2\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -5000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_remove_outfit_item",
+      "_type": "request",
+      "parentId": "fld_outfit_items",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "url": "{{ base_url }}/outfits/{{ outfit_id }}/items/{{ item_id }}",
+      "name": "Remove Item from Outfit",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 0,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildUrl": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "fld_root",
+      "_type": "request_group",
+      "parentId": null,
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "name": "Fashion API - Mission Top Secret",
+      "description": "Complete API collection for testing all endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -200000
+    },
+    {
+      "_id": "env_production",
+      "_type": "environment",
+      "parentId": "fld_root",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "name": "Production",
+      "data": {
+        "base_url": "https://api.example.com/api/v1",
+        "access_token": "",
+        "refresh_token": "",
+        "product_id": "",
+        "accessory_id": "",
+        "outfit_id": "",
+        "item_id": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url",
+          "access_token",
+          "refresh_token",
+          "product_id",
+          "accessory_id",
+          "outfit_id",
+          "item_id"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 0
+    },
+    {
+      "_id": "env_development",
+      "_type": "environment",
+      "parentId": "fld_root",
+      "modified": 1678752000000,
+      "created": 1678752000000,
+      "name": "Development",
+      "data": {
+        "base_url": "http://localhost:4000/api/v1",
+        "access_token": "",
+        "refresh_token": "",
+        "product_id": "",
+        "accessory_id": "",
+        "outfit_id": "",
+        "item_id": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url",
+          "access_token",
+          "refresh_token",
+          "product_id",
+          "accessory_id",
+          "outfit_id",
+          "item_id"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1
+    }
+  ]
+}

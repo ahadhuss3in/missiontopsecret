@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@clerk/nextjs": "^7.0.4",
     "@fashion/shared": "workspace:*",
     "@tanstack/react-query": "^5.45.1",
     "next": "^14.2.4",

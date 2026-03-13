@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 
 export default function LandingPage() {
   return (
@@ -8,10 +9,14 @@ export default function LandingPage() {
         <span className="text-xl font-bold tracking-tight">👗 FashionFit</span>
         <div className="flex items-center gap-6">
           <Link href="#how" className="text-sm text-gray-600 hover:text-black">How it works</Link>
-          <Link href="/login" className="text-sm text-gray-600 hover:text-black">Sign in</Link>
-          <Link href="/register" className="bg-black text-white text-sm px-4 py-2 rounded-full hover:bg-gray-800">
-            Get started
-          </Link>
+          <SignInButton>
+            <button className="text-sm text-gray-600 hover:text-black">Sign in</button>
+          </SignInButton>
+          <SignUpButton>
+            <button className="bg-black text-white text-sm px-4 py-2 rounded-full hover:bg-gray-800">
+              Get started
+            </button>
+          </SignUpButton>
         </div>
       </nav>
 
@@ -31,9 +36,9 @@ export default function LandingPage() {
           <a href="#install" className="bg-black text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-800 transition">
             Install Extension
           </a>
-          <Link href="/register" className="text-gray-500 text-sm underline">
-            Create free account
-          </Link>
+          <SignUpButton>
+            <button className="text-gray-500 text-sm underline">Create free account</button>
+          </SignUpButton>
         </div>
       </section>
 
@@ -73,9 +78,11 @@ export default function LandingPage() {
       <section id="install" className="bg-black text-white py-24 text-center px-8">
         <h2 className="text-4xl font-black mb-4">Start building outfits today</h2>
         <p className="text-gray-400 mb-8">Free to use. No credit card required.</p>
-        <Link href="/register" className="bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition">
-          Create free account →
-        </Link>
+        <SignUpButton>
+          <button className="bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition">
+            Create free account →
+          </button>
+        </SignUpButton>
       </section>
 
       {/* Footer */}

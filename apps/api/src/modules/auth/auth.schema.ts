@@ -1,12 +1,16 @@
 import { z } from "zod";
 
-export const registerSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8, "Password must be at least 8 characters"),
+// Get current user - no input needed, uses Bearer token
+export const getCurrentUserSchema = z.object({});
+
+// Sync user profile (called after Clerk sign in on frontend)
+export const syncUserSchema = z.object({
+  email: z.string().email("Valid email is required"),
   displayName: z.string().min(1).max(60).optional(),
 });
 
-export const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(1),
+// Update user profile
+export const updateUserSchema = z.object({
+  displayName: z.string().min(1).max(60).optional(),
 });
+

@@ -9,16 +9,15 @@ datasource db {
 
 model User {
   id           String   @id @default(cuid())
+  clerkId      String   @unique // Clerk's unique user identifier
   email        String   @unique
-  passwordHash String
   displayName  String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  outfits       Outfit[]
-  products      Product[]
-  accessories   Accessory[]
-  refreshTokens RefreshToken[]
+  outfits      Outfit[]
+  products     Product[]
+  accessories  Accessory[]
 
   @@map("users")
 }
@@ -95,18 +94,4 @@ model Accessory {
 
   @@index([userId])
   @@map("accessories")
-}
-
-model RefreshToken {
-  id        String    @id @default(cuid())
-  tokenHash String    @unique
-  userId    String
-  expiresAt DateTime
-  createdAt DateTime  @default(now())
-  revokedAt DateTime?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@map("refresh_tokens")
 }
