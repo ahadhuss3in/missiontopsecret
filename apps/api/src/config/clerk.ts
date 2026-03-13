@@ -1,10 +1,5 @@
-import { createClerkClient } from "@clerk/backend";
+import { verifyToken } from "@clerk/backend";
 import { env } from "./env";
-
-// Initialize Clerk backend client
-export const clerk = createClerkClient({
-  secretKey: env.CLERK_SECRET_KEY,
-});
 
 /**
  * Verify a Clerk session token from the Authorization header
@@ -18,7 +13,9 @@ export async function verifyClerkToken(token: string) {
     }
 
     const sessionToken = token.slice(7); // Remove "Bearer " prefix
-    const decoded = await clerk.verifyToken(sessionToken);
+    const decoded = await verifyToken(sessionToken, {
+      secretKey: env.CLERK_SECRET_KEY,
+    });
     return decoded;
   } catch (error) {
     throw Object.assign(new Error("Invalid or expired token"), {

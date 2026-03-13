@@ -31,12 +31,11 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     });
 
     if (!user) {
-      // Create user from Clerk data
+      // Create a placeholder user — email/displayName are synced via POST /auth/sync
       user = await prisma.user.create({
         data: {
           clerkId,
-          email: payload.email || "",
-          displayName: payload.name || undefined,
+          email: `${clerkId}@clerk.local`,
         },
         select: { id: true, clerkId: true, email: true },
       });
