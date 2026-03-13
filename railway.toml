@@ -1,6 +1,6 @@
 [build]
 builder = "nixpacks"
-buildCommand = "pnpm install --frozen-lockfile && pnpm --filter @fashion/shared build && pnpm --filter @fashion/api build && pnpm --filter @fashion/api exec prisma generate"
+buildCommand = "pnpm install --frozen-lockfile && pnpm --filter @fashion/api exec prisma generate && pnpm --filter @fashion/shared build && pnpm --filter @fashion/api build"
 
 [deploy]
 startCommand = "pnpm --filter @fashion/api start"
