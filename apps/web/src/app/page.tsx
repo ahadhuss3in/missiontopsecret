@@ -10,10 +10,10 @@ export default function LandingPage() {
         <div className="flex items-center gap-6">
           <Link href="#how" className="text-sm text-gray-600 hover:text-black">How it works</Link>
           <Show when="signed-out">
-            <SignInButton mode="modal">
+            <SignInButton mode="modal" forceRedirectUrl="/dashboard">
               <button className="text-sm text-gray-600 hover:text-black">Sign in</button>
             </SignInButton>
-            <SignUpButton mode="modal">
+            <SignUpButton mode="modal" forceRedirectUrl="/dashboard">
               <button className="bg-black text-white text-sm px-4 py-2 rounded-full hover:bg-gray-800">
                 Get started
               </button>
@@ -42,7 +42,7 @@ export default function LandingPage() {
           <a href="#install" className="bg-black text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-800 transition">
             Install Extension
           </a>
-          <SignUpButton mode="modal">
+          <SignUpButton mode="modal" forceRedirectUrl="/dashboard">
             <button className="text-gray-500 text-sm underline">Create free account</button>
           </SignUpButton>
         </div>
