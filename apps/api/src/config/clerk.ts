@@ -1,8 +1,8 @@
-import { Clerk } from "@clerk/backend";
+import { createClerkClient } from "@clerk/backend";
 import { env } from "./env";
 
 // Initialize Clerk backend client
-export const clerk = new Clerk({
+export const clerk = createClerkClient({
   secretKey: env.CLERK_SECRET_KEY,
 });
 
