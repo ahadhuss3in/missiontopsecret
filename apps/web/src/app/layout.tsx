@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { QueryProvider } from "@/context/QueryProvider";
 
 export const metadata: Metadata = {
@@ -12,16 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="antialiased">
-        <ClerkProvider>
-          <header>
-            <Show when="signed-out">
-              <SignInButton />
-              <SignUpButton />
-            </Show>
-            <Show when="signed-in">
-              <UserButton />
-            </Show>
-          </header>
+        <ClerkProvider afterSignInUrl="/dashboard" afterSignUpUrl="/dashboard">
           <QueryProvider>{children}</QueryProvider>
         </ClerkProvider>
       </body>

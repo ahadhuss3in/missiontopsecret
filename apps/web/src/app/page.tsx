@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SignInButton, SignUpButton } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs";
 
 export default function LandingPage() {
   return (
@@ -9,14 +9,20 @@ export default function LandingPage() {
         <span className="text-xl font-bold tracking-tight">👗 FashionFit</span>
         <div className="flex items-center gap-6">
           <Link href="#how" className="text-sm text-gray-600 hover:text-black">How it works</Link>
-          <SignInButton>
-            <button className="text-sm text-gray-600 hover:text-black">Sign in</button>
-          </SignInButton>
-          <SignUpButton>
-            <button className="bg-black text-white text-sm px-4 py-2 rounded-full hover:bg-gray-800">
-              Get started
-            </button>
-          </SignUpButton>
+          <Show when="signed-out">
+            <SignInButton>
+              <button className="text-sm text-gray-600 hover:text-black">Sign in</button>
+            </SignInButton>
+            <SignUpButton>
+              <button className="bg-black text-white text-sm px-4 py-2 rounded-full hover:bg-gray-800">
+                Get started
+              </button>
+            </SignUpButton>
+          </Show>
+          <Show when="signed-in">
+            <Link href="/dashboard" className="text-sm text-gray-600 hover:text-black">Dashboard</Link>
+            <UserButton />
+          </Show>
         </div>
       </nav>
 
