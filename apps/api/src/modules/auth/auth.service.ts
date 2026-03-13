@@ -57,23 +57,3 @@ export async function getCurrentUser(userId: string) {
 
   return user;
 }
-
-    return; // already invalid, nothing to revoke
-  }
-
-  const tokens = await prisma.refreshToken.findMany({
-    where: { userId: payload.sub, revokedAt: null },
-  });
-
-  const { compareToken } = await import("../../utils/hash");
-  const matchingToken = await Promise.all(
-    tokens.map(async (t) => ({ t, match: await compareToken(rawRefreshToken, t.tokenHash) }))
-  ).then((results) => results.find((r) => r.match)?.t);
-
-  if (matchingToken) {
-    await prisma.refreshToken.update({
-      where: { id: matchingToken.id },
-      data: { revokedAt: new Date() },
-    });
-  }
-}
