@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+buildCommand = "pnpm install --frozen-lockfile && pnpm --filter @fashion/api build && pnpm --filter @fashion/api exec prisma generate"
+
+[deploy]
+startCommand = "pnpm --filter @fashion/api start"
+healthcheckPath = "/health"
+restartPolicyType = "on_failure"
